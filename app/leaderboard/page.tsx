@@ -1,7 +1,7 @@
 export default function Leaderboard() {
     return(
-        <div>
-            
+        <div className="">
+
         </div>
     )
 }
