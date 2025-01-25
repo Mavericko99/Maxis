@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tinsel",
+  title: "Maxis",
   description: "",
 };
 
