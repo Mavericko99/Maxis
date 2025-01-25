@@ -1,17 +1,39 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 
+// Define types for test results and responses
+interface TestResults {
+  question?: string;
+  answer?: string;
+  rating?: number;
+  feedback?: string;
+  error?: string;
+}
+
+interface QuestionResponse {
+  question: string;
+}
+
+interface AIResponse {
+  answer: string;
+}
+
+interface EvaluationResponse {
+  rating: number;
+  feedback: string;
+}
+
 export default function AITester() {
-  const [apiKey, setApiKey] = useState('');
-  const [endpoint, setEndpoint] = useState('');
-  const [context, setContext] = useState('');
-  const [personality, setPersonality] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [testResults, setTestResults] = useState(null);
+  const [apiKey, setApiKey] = useState<string>('');
+  const [endpoint, setEndpoint] = useState<string>('');
+  const [context, setContext] = useState<string>('');
+  const [personality, setPersonality] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [testResults, setTestResults] = useState<TestResults | null>(null);
 
   const runTest = async () => {
     setIsLoading(true);
@@ -24,11 +46,11 @@ export default function AITester() {
         },
         body: JSON.stringify({
           personality,
-          context
+          context,
         }),
       });
-      
-      const { question } = await questionResponse.json();
+
+      const { question }: QuestionResponse = await questionResponse.json();
 
       // Send the question to the user's AI API
       const aiResponse = await fetch('/api/test-ai', {
@@ -40,11 +62,11 @@ export default function AITester() {
           apiKey,
           endpoint,
           question,
-          context
+          context,
         }),
       });
 
-      const { answer } = await aiResponse.json();
+      const { answer }: AIResponse = await aiResponse.json();
 
       // Send the answer back to GPT-4-mini for evaluation
       const evaluationResponse = await fetch('/api/evaluate-response', {
@@ -56,30 +78,30 @@ export default function AITester() {
           personality,
           context,
           question,
-          answer
+          answer,
         }),
       });
 
-      const evaluation = await evaluationResponse.json();
-      
+      const { rating, feedback }: EvaluationResponse = await evaluationResponse.json();
+
       // Ensure rating has a default value if undefined
       setTestResults({
         question,
         answer,
-        rating: evaluation.rating || 0,
-        feedback: evaluation.feedback || 'No feedback available'
+        rating: rating || 0,
+        feedback: feedback || 'No feedback available',
       });
     } catch (error) {
       console.error('Test failed:', error);
       setTestResults({
-        error: 'Test failed. Please check your API configuration and try again.'
+        error: 'Test failed. Please check your API configuration and try again.',
       });
     }
     setIsLoading(false);
   };
 
   // Helper function to safely format rating
-  const formatRating = (rating) => {
+  const formatRating = (rating: number): string => {
     if (typeof rating === 'number' && !isNaN(rating)) {
       return rating.toFixed(2);
     }
@@ -155,7 +177,7 @@ export default function AITester() {
                 <h3 className="font-medium">Test Question</h3>
                 <p className="mt-1 text-gray-600">{testResults.question || 'No question generated'}</p>
               </div>
-              
+
               <div>
                 <h3 className="font-medium">AI Response</h3>
                 <p className="mt-1 text-gray-600">{testResults.answer || 'No response received'}</p>
@@ -164,7 +186,7 @@ export default function AITester() {
               <div>
                 <h3 className="font-medium">Rating</h3>
                 <div className="mt-2 flex items-center">
-                  <div className="text-3xl font-bold">{formatRating(testResults.rating)}</div>
+                  <div className="text-3xl font-bold">{formatRating(testResults.rating as any)}</div>
                   <div className="ml-2 text-sm text-gray-500">/ 1.00</div>
                 </div>
               </div>
