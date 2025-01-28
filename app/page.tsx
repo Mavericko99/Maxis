@@ -21,7 +21,7 @@ export default function Home() {
 
         </div>
         <div className='mt-16 flex gap-6 flex-col md:flex-row items-center'>
-          <Link href="/stress " >
+          <Link href="/stress" >
             <Test name="Stress Test" />
 
           </Link>
