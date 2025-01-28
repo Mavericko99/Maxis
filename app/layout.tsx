@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const geistSans = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  style: 'normal',
+  subsets: ['cyrillic'],
 });
 
 const geistMono = Geist_Mono({
@@ -27,9 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans} ${geistMono.variable} antialiased`}
       >
-        <div className="flex gap-4 p-4">
+        <div className="flex gap-4 p-4 bg-transparent fixed  z-20">
           <Link href="/stress">
             <Button>Stress Test</Button>
           </Link>

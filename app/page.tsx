@@ -1,61 +1,48 @@
 "use client"
-import { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Name from '@/components/ui/name';
+import MatrixRain from '../components/ui/MatrixRain';
+import Card from '@/components/ui/card copy';
+import Social from '@/components/ui/test';
+import Link from 'next/link';
+import Test from '@/components/ui/test';
 
-export default function MaxisLandingPage() {
-  const [email, setEmail] = useState<string>('');
-
-  const handleSubscribe = () => {
-    alert(`Thanks for subscribing, ${email}! Maxis will be in touch.`);
-    setEmail('');
-  };
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white font-mono overflow-hidden relative">
-      {/* Glitch Effect Background */}
-      <div className="absolute inset-0 bg-[url('/matrix-code.png')] opacity-20 animate-glitch"></div>
+    <div className="relative h-screen bg-black flex items-center justify-center gap-4 flex-col p-2">
+      <MatrixRain />
+      <div className='flex flex-col items-center justify-center z-20 w-full h-full'>
+        <Name />
+        <div className='mt-40 md:flex hidden'>
+          <Card />
 
-      {/* Main Content */}
-      <div className="relative z-10 container mx-auto p-8 flex flex-col items-center justify-center min-h-screen">
-        {/* Header */}
-        <h1 className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-500 mb-4 animate-pulse">
-          Maxis
-        </h1>
-        <p className="text-lg md:text-2xl text-gray-300 text-center mb-8">
-          The Monkey AI Agent Testing the Limits of Artificial Intelligence
-        </p>
+        </div>
+        <div className='text-sm text-white md:hidden flex text-[10px]'>
+          CA: Not yet posted!
 
-  
+        </div>
+        <div className='mt-16 flex gap-6 flex-col md:flex-row items-center'>
+          <Link href="/stress" >
+            <Test name="Stress Test" />
 
-        {/* Features Section */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-black/70 backdrop-blur-md border border-green-500/30 rounded-lg p-6 shadow-lg shadow-green-500/20">
-            <h3 className="text-xl font-bold text-green-400 mb-2">AI Benchmarking</h3>
-            <p className="text-gray-400">
-              Maxis rigorously tests AI models to measure their performance, accuracy, and speed.
-            </p>
-          </div>
-          <div className="bg-black/70 backdrop-blur-md border border-green-500/30 rounded-lg p-6 shadow-lg shadow-green-500/20">
-            <h3 className="text-xl font-bold text-green-400 mb-2">Real-Time Analysis</h3>
-            <p className="text-gray-400">
-              Get instant insights into AI behavior under stress and edge-case scenarios.
-            </p>
-          </div>
-          <div className="bg-black/70 backdrop-blur-md border border-green-500/30 rounded-lg p-6 shadow-lg shadow-green-500/20">
-            <h3 className="text-xl font-bold text-green-400 mb-2">Futuristic Tools</h3>
-            <p className="text-gray-400">
-              Leverage cutting-edge tools to optimize and improve your AI systems.
-            </p>
-          </div>
+          </Link>
+          <Link href="/personality">
+            <Test name="Personality Test" />
+
+          </Link>
+
+          <Link href="/">
+            <Test name="Security Test" />
+          </Link>
+
+          <Link href="#">
+            <Test name="Leaderboard" />
+          </Link>
+
         </div>
 
-        {/* Footer */}
-        <footer className="mt-16 text-center text-gray-500">
-          <p>© 2023 Maxis. All rights reserved.</p>
-          <p className="text-sm">Designed for the future of AI.</p>
-        </footer>
+
       </div>
+
     </div>
   );
 }
