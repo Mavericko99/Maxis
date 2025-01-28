@@ -22,7 +22,7 @@ const MatrixRain = () => {
     const maxDelay = 10;
     let frameCount = 0;
     const img = new Image();
-    img.src = './image.jpeg'; // Make sure the image exists in the public folder
+    img.src = './gorilla.jpg'; // Make sure the image exists in the public folder
 
     rainCanvas.width = window.innerWidth;
     rainCanvas.height = window.innerHeight;

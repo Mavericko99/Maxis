@@ -8,7 +8,7 @@ const Card = () => {
         <div className="card1" />
         <div className="card2" />
         <div className="card3">
-          * CA: Not yet posted!
+          * CA: Not posted yet!
         </div>
       </div>
     </StyledWrapper>

@@ -30,14 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans} ${geistMono.variable} antialiased`}
       >
-        <div className="flex gap-4 p-4 bg-transparent fixed  z-20">
-          <Link href="/stress">
-            <Button>Stress Test</Button>
-          </Link>
-          <Link href="/personality">
-            <Button>Accuracy Test</Button>
-          </Link>
-        </div>
+        
         {children}
       </body>
     </html>
