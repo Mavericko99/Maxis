@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,46 +6,65 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const StressTest = () => {
-  const [apiKey, setApiKey] = useState('');
-  const [endpoint, setEndpoint] = useState('');
-  const [concurrent, setConcurrent] = useState(5);
-  const [totalRequests, setTotalRequests] = useState(20);
-  const [prompt, setPrompt] = useState('Tell me a brief joke');
-  const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [stats, setStats] = useState(null);
+// Define types for test results, stats, and other data structures
+interface TestResult {
+  requestId: number;
+  duration: number;
+  success: boolean;
+  error?: string;
+  timestamp: number;
+}
 
-  const runTest = async () => {
+interface Stats {
+  totalRequests: number;
+  successfulRequests: number;
+  failedRequests: number;
+  averageTime: number;
+  minTime: number;
+  maxTime: number;
+  p95: number;
+}
+
+const StressTest = () => {
+  const [apiKey, setApiKey] = useState<string>('');
+  const [endpoint, setEndpoint] = useState<string>('');
+  const [concurrent, setConcurrent] = useState<number>(5);
+  const [totalRequests, setTotalRequests] = useState<number>(20);
+  const [prompt, setPrompt] = useState<string>('Tell me a brief joke');
+  const [results, setResults] = useState<TestResult[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [stats, setStats] = useState<Stats | null>(null);
+
+  const runTest = async (): Promise<void> => {
     setIsLoading(true);
     setResults([]);
     const testResults: TestResult[] = [];
     let completedRequests = 0;
-    
+
     const batches = Math.ceil(totalRequests / concurrent);
-    
+
     for (let batch = 0; batch < batches; batch++) {
       const batchPromises: Promise<TestResult>[] = [];
       const batchSize = Math.min(concurrent, totalRequests - batch * concurrent);
-      
+
       for (let i = 0; i < batchSize; i++) {
         const requestPromise = makeRequest(completedRequests + i);
         batchPromises.push(requestPromise);
       }
-      
+
       const batchResults = await Promise.all(batchPromises);
       testResults.push(...batchResults);
       completedRequests += batchSize;
       setResults([...testResults]);
     }
-    
+
     calculateStats(testResults);
     setIsLoading(false);
   };
 
   const makeRequest = async (requestId: number): Promise<TestResult> => {
     const startTime = Date.now();
-    
+
     try {
       const response = await fetch('/api/test', {
         method: 'POST',
@@ -58,10 +77,10 @@ const StressTest = () => {
           prompt,
         }),
       });
-      
+
       const data = await response.json();
       const endTime = Date.now();
-      
+
       return {
         requestId,
         duration: endTime - startTime,
@@ -81,10 +100,10 @@ const StressTest = () => {
     }
   };
 
-  const calculateStats = (results: TestResult[]) => {
+  const calculateStats = (results: TestResult[]): void => {
     const durations = results.map(r => r.duration);
     const successfulRequests = results.filter(r => r.success).length;
-    
+
     const stats: Stats = {
       totalRequests: results.length,
       successfulRequests,
@@ -94,7 +113,7 @@ const StressTest = () => {
       maxTime: Math.max(...durations),
       p95: durations.sort((a, b) => a - b)[Math.floor(durations.length * 0.95)],
     };
-    
+
     setStats(stats);
   };
 
@@ -150,7 +169,7 @@ const StressTest = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium text-cyan-300">Test Prompt</label>
                 <Input
@@ -160,9 +179,9 @@ const StressTest = () => {
                   className="bg-gray-900/50 border-cyan-800 focus:border-cyan-500 text-cyan-50 placeholder:text-gray-500"
                 />
               </div>
-              
-              <Button 
-                onClick={runTest} 
+
+              <Button
+                onClick={runTest}
                 disabled={isLoading || !apiKey || !endpoint}
                 className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white shadow-lg shadow-cyan-500/20 disabled:opacity-50"
               >

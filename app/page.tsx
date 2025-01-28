@@ -26,30 +26,7 @@ export default function MaxisLandingPage() {
           The Monkey AI Agent Testing the Limits of Artificial Intelligence
         </p>
 
-        {/* Subscription Form */}
-        <div className="w-full max-w-md bg-black/70 backdrop-blur-md border border-green-500/30 rounded-lg p-6 shadow-lg shadow-green-500/20">
-          <h2 className="text-2xl font-bold text-green-400 mb-4">
-            Join the AI Revolution
-          </h2>
-          <p className="text-gray-400 mb-6">
-            Subscribe to get updates on Maxis' latest tests, benchmarks, and breakthroughs in AI performance.
-          </p>
-          <div className="flex flex-col space-y-4">
-            <Input
-              type="email"
-              value={email}
-              onChange={(e: any) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="bg-gray-900 border-green-500/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500"
-            />
-            <Button
-              onClick={handleSubscribe}
-              className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-2 rounded-lg transition-all duration-300"
-            >
-              Subscribe
-            </Button>
-          </div>
-        </div>
+  
 
         {/* Features Section */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
