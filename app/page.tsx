@@ -32,11 +32,11 @@ export default function Home() {
 
           </Link>
 
-          <Link href="/">
+          <Link href="/security">
             <Test name="Security Test" />
           </Link>
 
-          <Link href="#">
+          <Link href="leaderboard">
             <Test name="Leaderboard" />
           </Link>
 
