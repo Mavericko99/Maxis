@@ -44,7 +44,7 @@ export default function Home() {
         <div className='mt-16 flex gap-6 flex-row items-center'>
         <Link href="https://x.com/Maxis_Agent">
           <Button className='h-10 w-10 bg-white p-2'>
-            <img  src='icons/X.png' className='object-cover'>
+            <img  src='icons/x.png' className='object-cover'>
             </img>
           </Button>
           </Link>
