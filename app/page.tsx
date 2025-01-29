@@ -42,22 +42,30 @@ export default function Home() {
 
         </div>
         <div className='mt-16 flex gap-6 flex-row items-center'>
+        <Link href="https://x.com/Maxis_Agent">
           <Button className='h-10 w-10 bg-white p-2'>
             <img  src='icons/X.png' className='object-cover'>
             </img>
           </Button>
+          </Link>
+          <Link href="https://pump.fun/coin/">
           <Button className='h-10 w-10 bg-white p-2'>
             <img  src='icons/pump.png' className='object-cover'>
             </img>
           </Button>
+          </Link>
+          <Link href="https://github.com/Mavericko99/Maxis">
           <Button className='h-10 w-10 bg-white p-2'>
             <img  src='icons/github.png' className='object-cover'>
             </img>
           </Button>
+          </Link>
+          <Link href="/" >
           <Button className='h-10 w-10 bg-white p-2'>
             <img  src='icons/file.png' className='object-cover'>
             </img>
           </Button>
+          </Link>
         </div>
 
       </div>
