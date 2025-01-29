@@ -6,6 +6,7 @@ import Social from '@/components/ui/test';
 import Link from 'next/link';
 import Test from '@/components/ui/test';
 import Github from '@/components/ui/github';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
@@ -40,9 +41,23 @@ export default function Home() {
           </Link>
 
         </div>
-        <div className='mt-16 flex gap-6 flex-col md:flex-row items-center'>
-        <Github />
-
+        <div className='mt-16 flex gap-6 flex-row items-center'>
+          <Button className='h-10 w-10 bg-white p-2'>
+            <img  src='icons/X.png' className='object-cover'>
+            </img>
+          </Button>
+          <Button className='h-10 w-10 bg-white p-2'>
+            <img  src='icons/pump.png' className='object-cover'>
+            </img>
+          </Button>
+          <Button className='h-10 w-10 bg-white p-2'>
+            <img  src='icons/github.png' className='object-cover'>
+            </img>
+          </Button>
+          <Button className='h-10 w-10 bg-white p-2'>
+            <img  src='icons/file.png' className='object-cover'>
+            </img>
+          </Button>
         </div>
 
       </div>
