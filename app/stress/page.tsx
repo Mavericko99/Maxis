@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 // Define types for test results, stats, and other data structures
 interface TestResult {
@@ -118,8 +120,13 @@ const StressTest = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-cyan-50 p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gray-900 text-cyan-50 p-6 relative">
+         <Link href="/">
+        <Button variant="outline" className='absolute top-6 z-10 left-10 pl-3  rounded-full bg-transparent'>
+          <ArrowLeft />
+          Home</Button>
+      </Link>
+      <div className="max-w-6xl mt-12 mx-auto space-y-6">
         <Card className="border-0 bg-gray-800/50 backdrop-blur-sm shadow-lg shadow-cyan-500/20">
           <CardHeader className="border-b border-cyan-900/50">
             <CardTitle className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">

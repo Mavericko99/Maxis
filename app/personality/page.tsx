@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 // Define types for test results and responses
 interface TestResults {
@@ -109,56 +111,70 @@ export default function AITester() {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
-      <Card className="mb-6">
+    <div className="container mx-auto p-4 bg-gray-900 text-cyan-50 flex flex-col items-center pt-8 relative">
+      <Link href="/">
+        <Button variant="outline" className='absolute top-6 z-10 left-10 pl-3  rounded-full bg-transparent'>
+          <ArrowLeft />
+          Home</Button>
+      </Link>
+       
+ 
+
+      <Card className="mb-6 border-0 mt-12 bg-gray-800/50 backdrop-blur-sm shadow-lg shadow-cyan-500/20 max-w-4xl w-full">
         <CardHeader>
-          <CardTitle>AI Personality Tester</CardTitle>
+          <CardTitle className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            AI Personality Tester
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1">API Key</label>
+              <label className="block text-sm font-medium mb-1 text-cyan-300">API Key</label>
               <Input
                 type="password"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
                 placeholder="Enter your AI service API key"
+                className="bg-gray-900/50 border-cyan-800 focus:border-cyan-500 text-cyan-50 placeholder:text-gray-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">API Endpoint</label>
+              <label className="block text-sm font-medium mb-1 text-cyan-300">API Endpoint</label>
               <Input
                 value={endpoint}
                 onChange={(e) => setEndpoint(e.target.value)}
                 placeholder="https://api.example.com/v1/chat"
+                className="bg-gray-900/50 border-cyan-800 focus:border-cyan-500 text-cyan-50 placeholder:text-gray-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Context Description</label>
+              <label className="block text-sm font-medium mb-1 text-cyan-300">Context Description</label>
               <Textarea
                 value={context}
                 onChange={(e) => setContext(e.target.value)}
                 placeholder="Describe the context or background knowledge your AI agent should have..."
                 rows={4}
+                className="bg-gray-900/50 border-cyan-800 focus:border-cyan-500 text-cyan-50 placeholder:text-gray-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Personality Description</label>
+              <label className="block text-sm font-medium mb-1 text-cyan-300">Personality Description</label>
               <Textarea
                 value={personality}
                 onChange={(e) => setPersonality(e.target.value)}
                 placeholder="Describe the desired personality traits of your AI agent..."
                 rows={4}
+                className="bg-gray-900/50 border-cyan-800 focus:border-cyan-500 text-cyan-50 placeholder:text-gray-500"
               />
             </div>
 
             <Button
               onClick={runTest}
               disabled={isLoading || !apiKey || !endpoint || !context || !personality}
-              className="w-full"
+              className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white shadow-lg shadow-cyan-500/20 disabled:opacity-50"
             >
               {isLoading ? 'Running Test...' : 'Test AI Agent'}
             </Button>
@@ -167,32 +183,32 @@ export default function AITester() {
       </Card>
 
       {testResults && !testResults.error && (
-        <Card>
+        <Card className="border-0 bg-gray-800/50 backdrop-blur-sm shadow-lg shadow-cyan-500/20">
           <CardHeader>
-            <CardTitle>Test Results</CardTitle>
+            <CardTitle className="text-xl font-bold text-cyan-400">Test Results</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div>
-                <h3 className="font-medium">Test Question</h3>
+                <h3 className="font-medium text-cyan-300">Test Question</h3>
                 <p className="mt-1 text-gray-600">{testResults.question || 'No question generated'}</p>
               </div>
 
               <div>
-                <h3 className="font-medium">AI Response</h3>
+                <h3 className="font-medium text-cyan-300">AI Response</h3>
                 <p className="mt-1 text-gray-600">{testResults.answer || 'No response received'}</p>
               </div>
 
               <div>
-                <h3 className="font-medium">Rating</h3>
+                <h3 className="font-medium text-cyan-300">Rating</h3>
                 <div className="mt-2 flex items-center">
-                  <div className="text-3xl font-bold">{formatRating(testResults.rating as any)}</div>
+                  <div className="text-3xl font-bold text-cyan-400">{formatRating(testResults.rating as any)}</div>
                   <div className="ml-2 text-sm text-gray-500">/ 1.00</div>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-medium">Feedback</h3>
+                <h3 className="font-medium text-cyan-300">Feedback</h3>
                 <p className="mt-1 text-gray-600">{testResults.feedback || 'No feedback available'}</p>
               </div>
             </div>
