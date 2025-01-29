@@ -5,6 +5,7 @@ import Card from '@/components/ui/card copy';
 import Social from '@/components/ui/test';
 import Link from 'next/link';
 import Test from '@/components/ui/test';
+import Github from '@/components/ui/github';
 
 export default function Home() {
   return (
@@ -39,7 +40,10 @@ export default function Home() {
           </Link>
 
         </div>
+        <div className='mt-16 flex gap-6 flex-col md:flex-row items-center'>
+        <Github />
 
+        </div>
 
       </div>
 
