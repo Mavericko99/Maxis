@@ -60,7 +60,7 @@ export default function Home() {
             </img>
           </Button>
           </Link>
-          <Link href="/" >
+          <Link href="https://drive.google.com/file/d/1dQe3qYX_6J-8-CGxFmh46Lc4spAMtHUS/view?usp=sharing" >
           <Button className='h-10 w-10 bg-white p-2'>
             <img  src='icons/file.png' className='object-cover'>
             </img>

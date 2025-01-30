@@ -191,12 +191,12 @@ export default function AITester() {
             <div className="space-y-4">
               <div>
                 <h3 className="font-medium text-cyan-300">Test Question</h3>
-                <p className="mt-1 text-gray-600">{testResults.question || 'No question generated'}</p>
+                <p className="mt-1 text-gray-100">{testResults.question || 'No question generated'}</p>
               </div>
 
               <div>
                 <h3 className="font-medium text-cyan-300">AI Response</h3>
-                <p className="mt-1 text-gray-600">{testResults.answer || 'No response received'}</p>
+                <p className="mt-1 text-gray-100">{testResults.answer || 'No response received'}</p>
               </div>
 
               <div>
@@ -209,7 +209,7 @@ export default function AITester() {
 
               <div>
                 <h3 className="font-medium text-cyan-300">Feedback</h3>
-                <p className="mt-1 text-gray-600">{testResults.feedback || 'No feedback available'}</p>
+                <p className="mt-1 text-gray-100">{testResults.feedback || 'No feedback available'}</p>
               </div>
             </div>
           </CardContent>
