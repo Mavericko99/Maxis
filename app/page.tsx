@@ -19,7 +19,7 @@ export default function Home() {
 
         </div>
         <div className='text-sm text-white md:hidden flex text-[10px]'>
-          CA: Not posted yet!
+          CA: SUqFqVvaduDuQaKNZ1TXCJcGLagdCAQ7Q4s21Gipump
 
         </div>
         <div className='mt-16 flex gap-6 flex-col md:flex-row items-center'>
